@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ReusableBg extends StatelessWidget {
-  ReusableBg({required this.colour, required this.cardChild}); //remove required
+  ReusableBg({required this.colour, required this.cardChild});
   final Color colour;
   final Widget cardChild;
 

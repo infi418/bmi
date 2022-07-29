@@ -248,34 +248,6 @@ class _InputPageState extends State<InputPage> {
                               });
                             },
                           ),
-                          // Text(
-                          //   weight.toString(),
-                          //   style: kDigitTextStyle,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: [
-                          //     RoundIconButton(
-                          //       icon: FontAwesomeIcons.minus,
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           weight--;
-                          //         });
-                          //       },
-                          //     ),
-                          //     SizedBox(
-                          //       width: 15.0,
-                          //     ),
-                          //     RoundIconButton(
-                          //       icon: FontAwesomeIcons.plus,
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           weight++;
-                          //         });
-                          //       },
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
@@ -310,32 +282,6 @@ class _InputPageState extends State<InputPage> {
                               });
                             },
                           ),
-                          // Text(
-                          //   age.toString(),
-                          //   style: kDigitTextStyle,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: [
-                          //     RoundIconButton(
-                          //       icon: FontAwesomeIcons.minus,
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           age--;
-                          //         });
-                          //       },
-                          //     ),
-                          //     SizedBox(width: 15.0),
-                          //     RoundIconButton(
-                          //       icon: FontAwesomeIcons.plus,
-                          //       onPressed: () {
-                          //         setState(() {
-                          //           age++;
-                          //         });
-                          //       },
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),

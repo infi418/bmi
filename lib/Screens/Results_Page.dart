@@ -50,8 +50,6 @@ class ResultPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Screenshot(
-              //   controller: _screenshotController,
               Expanded(
                 flex: 5,
                 child: ReusableBg(
@@ -136,36 +134,13 @@ class ResultPage extends StatelessWidget {
                           )
                         ],
                       ),
-
-                      // Container(
-                      //   width: 10.0,
-                      //   height: 60.0,
-                      //   child: ElevatedButton(
-                      //       child: Text('RE-CALCULATE'),
-                      //       style: ButtonStyle(
-                      //           shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(10.0)))),
-                      //       onPressed: () {
-                      //         Navigator.push(context,
-                      //             MaterialPageRoute(builder: (context) => InputPage()));
-                      //       }),
-                      //)
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          //   void takescreenshot() async {
-          //   final image = await screenshotController.capture();
-          //   Share.share(image?.path);
-          // }
         ),
-        // void takescreenshot() async {
-        //   final image = await _screenshotController.capture();
-        //   var imageFile;
-        //   Share.shareFiles([imageFile.path]);
-        // }
       );
   void _takescreenshot() async {
     final image = await _screenshotController.capture();
