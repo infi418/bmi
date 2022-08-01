@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Components/Icon_Content.dart';
 import '../Components/Reusable_Bg.dart';
-import '../Components/RoundIcon_Button.dart';
 import '../constants.dart';
 import 'Results_Page.dart';
-import 'package:wheel_chooser/wheel_chooser.dart';
 import 'package:wheel_slider/wheel_slider.dart';
 import '../calculator_brain.dart';
 
-// ignore: must_be_immutable
 class InputPage extends StatefulWidget {
+  const InputPage({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _InputPageState createState() => _InputPageState();
 }
 
@@ -27,7 +26,8 @@ class _InputPageState extends State<InputPage> {
   //by default male will be selected
 
   late Gender selectedGender = Gender.male;
-  int height = 180;
+  // int height = 180;
+  ValueNotifier<int> height = ValueNotifier(180);
   int weight = 10;
   int age = 20;
 
@@ -57,11 +57,7 @@ class _InputPageState extends State<InputPage> {
                         });
                       },
                       child: Container(
-                        child: IconContent(
-                          myicon: FontAwesomeIcons.mars,
-                          text: 'MALE',
-                        ),
-                        margin: EdgeInsets.all(16.0),
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: selectedGender == Gender.male
@@ -73,15 +69,19 @@ class _InputPageState extends State<InputPage> {
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black12.withOpacity(0.1),
-                                offset: Offset(-5, 0),
+                                offset: const Offset(-5, 0),
                                 spreadRadius: 2,
                                 blurRadius: 10.0),
                             BoxShadow(
                                 color: Colors.black12.withOpacity(0.1),
-                                offset: Offset(0, 5),
+                                offset: const Offset(0, 5),
                                 spreadRadius: 2,
                                 blurRadius: 10),
                           ],
+                        ),
+                        child: IconContent(
+                          myicon: FontAwesomeIcons.mars,
+                          text: 'MALE',
                         ),
                       ),
                     ),
@@ -94,11 +94,7 @@ class _InputPageState extends State<InputPage> {
                         });
                       },
                       child: Container(
-                        child: IconContent(
-                          myicon: FontAwesomeIcons.marsAndVenus,
-                          text: 'TRANS',
-                        ),
-                        margin: EdgeInsets.all(16.0),
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: selectedGender == Gender.trans
@@ -110,16 +106,20 @@ class _InputPageState extends State<InputPage> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black12.withOpacity(0.1),
-                              offset: Offset(-5, 0),
+                              offset: const Offset(-5, 0),
                               spreadRadius: 2,
                               blurRadius: 10.0,
                             ),
                             BoxShadow(
                                 color: Colors.black12.withOpacity(0.1),
-                                offset: Offset(0, 5),
+                                offset: const Offset(0, 5),
                                 spreadRadius: 2,
                                 blurRadius: 10),
                           ],
+                        ),
+                        child: IconContent(
+                          myicon: FontAwesomeIcons.marsAndVenus,
+                          text: 'TRANS',
                         ),
                       ),
                     ),
@@ -132,11 +132,7 @@ class _InputPageState extends State<InputPage> {
                         });
                       },
                       child: Container(
-                        child: IconContent(
-                          myicon: FontAwesomeIcons.venus,
-                          text: 'FEMALE',
-                        ),
-                        margin: EdgeInsets.all(16.0),
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: selectedGender == Gender.female
@@ -148,15 +144,19 @@ class _InputPageState extends State<InputPage> {
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black12.withOpacity(0.1),
-                                offset: Offset(-5, 0),
+                                offset: const Offset(-5, 0),
                                 spreadRadius: 2,
                                 blurRadius: 10.0),
                             BoxShadow(
                                 color: Colors.black12.withOpacity(0.1),
-                                offset: Offset(0, 5),
+                                offset: const Offset(0, 5),
                                 spreadRadius: 2,
                                 blurRadius: 10),
                           ],
+                        ),
+                        child: IconContent(
+                          myicon: FontAwesomeIcons.venus,
+                          text: 'FEMALE',
                         ),
                       ),
                     ),
@@ -170,7 +170,7 @@ class _InputPageState extends State<InputPage> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'HEIGHT',
                       style: klabelTextStyle,
                     ),
@@ -179,37 +179,47 @@ class _InputPageState extends State<InputPage> {
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: [
-                        Text(
-                          height.toString(),
-                          style: kDigitTextStyle,
+                        ValueListenableBuilder(
+                          valueListenable: height,
+                          builder: (BuildContext context, dynamic value,
+                              Widget? child) {
+                            return Text(
+                              value.toString(),
+                              style: kDigitTextStyle,
+                            );
+                          },
                         ),
-                        Text(
+                        const Text(
                           'cm',
                           style: klabelTextStyle,
                         ),
                       ],
                     ),
-                    SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Colors.grey,
-                        inactiveTrackColor: ksliderInactiveColor,
-                        thumbColor: Color(0xFFEB1555),
-                        overlayColor: Color(0x29EB1555),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 35.0),
-                      ),
-                      child: Slider(
-                        value: height.toDouble(),
-                        min: 120,
-                        max: 300,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
-                      ),
+                    ValueListenableBuilder(
+                      valueListenable: height,
+                      builder:
+                          (BuildContext context, int value, Widget? child) {
+                        return SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: Colors.grey,
+                            inactiveTrackColor: ksliderInactiveColor,
+                            thumbColor: const Color(0xFFEB1555),
+                            overlayColor: const Color(0x29EB1555),
+                            thumbShape: const RoundSliderThumbShape(
+                                enabledThumbRadius: 15.0),
+                            overlayShape: const RoundSliderOverlayShape(
+                                overlayRadius: 35.0),
+                          ),
+                          child: Slider(
+                            value: value.toDouble(),
+                            min: 120,
+                            max: 300,
+                            onChanged: (double newValue) {
+                              height.value = newValue.round();
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -224,7 +234,7 @@ class _InputPageState extends State<InputPage> {
                       cardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'WEIGHT',
                             style: klabelTextStyle,
                           ),
@@ -291,16 +301,16 @@ class _InputPageState extends State<InputPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
+              child: SizedBox(
                 height: 60.0,
                 width: 10.0,
                 child: ElevatedButton(
-                  child: Text('CALCULATE'),
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)))),
                   onPressed: () {
-                    Calculate calc = Calculate(height: height, weight: weight);
+                    Calculate calc =
+                        Calculate(height: height.value, weight: weight);
 
                     Navigator.push(
                       context,
@@ -314,6 +324,7 @@ class _InputPageState extends State<InputPage> {
                       ),
                     );
                   },
+                  child: const Text('CALCULATE'),
                 ),
               ),
             )

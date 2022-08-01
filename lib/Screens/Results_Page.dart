@@ -1,10 +1,7 @@
 import 'package:share_plus/share_plus.dart';
-import 'package:bmi/Components/RoundIcon_Button.dart';
 import 'package:bmi/Screens/input_page.dart';
 import 'package:bmi/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Components/Reusable_Bg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:screenshot/screenshot.dart';
@@ -40,7 +37,7 @@ class ResultPage extends StatelessWidget {
             centerTitle: true,
             elevation: 0.0,
             backgroundColor: Colors.white,
-            title: Text('BMI CALCULATOR',
+            title: const Text('BMI CALCULATOR',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 30.0,
@@ -70,11 +67,11 @@ class ResultPage extends StatelessWidget {
                         bmi,
                         style: kBMITextStyle,
                       ),
-                      Text(
+                      const Text(
                         'Normal BMI range:',
                         style: klabelTextStyle,
                       ),
-                      Text(
+                      const Text(
                         '18.5 - 25 kg/m2',
                         style: kBodyTextStyle,
                       ),
@@ -83,7 +80,7 @@ class ResultPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: kBodyTextStyle,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 1,
                       ),
                       Row(
@@ -91,7 +88,7 @@ class ResultPage extends StatelessWidget {
                         children: [
                           RawMaterialButton(
                             onPressed: _launchURLApp,
-                            constraints: BoxConstraints.tightFor(
+                            constraints: const BoxConstraints.tightFor(
                               width: 200.0,
                               height: 56.0,
                             ),
@@ -99,12 +96,12 @@ class ResultPage extends StatelessWidget {
                             elevation: 10.0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)),
-                            child: Text(
+                            child: const Text(
                               'Find Details',
                               style: kBodyTextStyle,
                             ),
                           ),
-                          SizedBox(width: 15.0),
+                          const SizedBox(width: 15.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shape: const CircleBorder(),
@@ -116,7 +113,7 @@ class ResultPage extends StatelessWidget {
                             onPressed: () =>
                                 SharePlus.share('$resultText\n$bmi\n$advise'),
                           ),
-                          SizedBox(width: 15.0),
+                          const SizedBox(width: 15.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shape: const CircleBorder(),
@@ -129,7 +126,7 @@ class ResultPage extends StatelessWidget {
                               Navigator.pop(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => InputPage()));
+                                      builder: (context) => const InputPage()));
                             },
                           )
                         ],
@@ -142,9 +139,9 @@ class ResultPage extends StatelessWidget {
           ),
         ),
       );
-  void _takescreenshot() async {
-    final image = await _screenshotController.capture();
-    var imageFile;
-    Share.shareFiles([imageFile.path]);
-  }
+  // void _takescreenshot() async {
+  //   final image = await _screenshotController.capture();
+  //   var imageFile;
+  //   Share.shareFiles([imageFile.path]);
+  // }
 }

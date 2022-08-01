@@ -6,7 +6,7 @@ class Calculate {
   final int height;
   final int weight;
   double _bmi = 0;
-  Color _textColor = Color(0xFF24D876);
+
   String result() {
     _bmi = (weight / pow(height / 100, 2));
     return _bmi.toStringAsFixed(1);
@@ -36,7 +36,7 @@ class Calculate {
     if (_bmi >= 25 || _bmi <= 18.5) {
       return Colors.deepOrangeAccent;
     } else {
-      return Color(0xFF24D876);
+      return const Color(0xFF24D876);
     }
   }
 
