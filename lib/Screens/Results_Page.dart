@@ -1,4 +1,3 @@
-import 'package:share_plus/share_plus.dart';
 import 'package:bmi/Screens/input_page.dart';
 import 'package:bmi/constants.dart';
 import 'package:flutter/material.dart';
