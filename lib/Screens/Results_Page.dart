@@ -1,6 +1,7 @@
 import 'package:bmi/Screens/input_page.dart';
 import 'package:bmi/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import '../Components/Reusable_Bg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:screenshot/screenshot.dart';
@@ -138,9 +139,9 @@ class ResultPage extends StatelessWidget {
           ),
         ),
       );
-  // void _takescreenshot() async {
-  //   final image = await _screenshotController.capture();
-  //   var imageFile;
-  //   Share.shareFiles([imageFile.path]);
-  // }
+  void _takescreenshot() async {
+    final image = await _screenshotController.capture();
+    var imageFile;
+    Share.shareFiles([imageFile.path]);
+  }
 }
