@@ -1,6 +1,10 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:bmi/Screens/input_page.dart';
 import 'package:bmi/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../Components/Reusable_Bg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -103,16 +107,20 @@ class ResultPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 15.0),
                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                                padding: const EdgeInsets.all(10)),
-                            child: const Icon(
-                              Icons.share,
-                              size: 30,
-                            ),
-                            onPressed: () =>
-                                SharePlus.share('$resultText\n$bmi\n$advise'),
-                          ),
+                              style: ElevatedButton.styleFrom(
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(10)),
+                              child: const Icon(
+                                Icons.share,
+                                size: 30,
+                              ),
+                              onPressed: () async {
+                                final image =
+                                    await _screenshotController.capture();
+                                    if (image == null)  return;
+                                saveAndShare(image);
+                                //Share.share('$resultText\n$bmi\n$advise');
+                              }),
                           const SizedBox(width: 15.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -139,9 +147,17 @@ class ResultPage extends StatelessWidget {
           ),
         ),
       );
-  void _takescreenshot() async {
-    final image = await _screenshotController.capture();
-    var imageFile;
-    Share.shareFiles([imageFile.path]);
+  // void _takescreenshot() async {
+  //   final image = await _screenshotController.capture();
+  //   var imageFile;
+  //   Share.shareFiles([imageFile.path]);
+  // }
+
+  void saveAndShare(Uint8List bytes) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final image = File('${directory.path}/image.png');
+    await image.writeAsBytes(bytes);
+
+    await Share.shareFiles([image.path]);
   }
 }
